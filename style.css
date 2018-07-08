@@ -81,10 +81,10 @@ html {
 width: 290px;
    height: 40px;
    box-sizing: border-box;
-   padding: 15px;
+   padding-top: 10px;
+    padding-bottom: 10px;
    text-align:center;
    font-size: 1.2rem;
-    font-stretch: semi-expanded;
    background-color: red;
    color: white;
    text-shadow: 1px 1px 1px black;
