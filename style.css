@@ -50,7 +50,6 @@ html {
     .container {
         order: 1;
         width: 35%;
-        float: left;
         margin-top: none;
         position: relative;
   }
@@ -69,7 +68,7 @@ html {
     #button p {
         order: 2;
         width: 45%;
-        float: left;
+        text-align: center
         margin-top: 50px;
     }
     
@@ -82,7 +81,7 @@ width: 290px;
    height: 40px;
    box-sizing: border-box;
    padding-top: 10px;
-    padding-bottom: 10px;
+   padding-bottom: 10px;
    text-align:center;
    font-size: 1.2rem;
    background-color: red;
