@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
+	
+	<style type="text/css">
+		@media screen and (max-width: 600px) {
+			main {
+				max-width: 600px
+			}
+			
+			.sec_cards {
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.game_container #time {
+				float: left;
+			}
+		
+			.game_container #moves {
+				float: right;
+			}
+		}
+		
+		
+		@media screen and (min-width: 601px) {
+			main {
+				max-width: 900px
+                    font-family: Roboto;
+			}
+			
+			.sec_cards {
+				float: left;
+			}
+			
+			.container {
+				float: left;
+			}
+			
+			.game_container #time {
+				float: left;
+			}
+		
+			.game_container #moves {
+				float: right;
+			}
+		}
+
+		
+		
+		main {
+			border: solid 1px green;
+			
+			margin-left: auto;
+			margin-right: auto;
+			
+			overflow: auto;
+            font-family: Roboto;
+		}
+		
+        .sec_welcome {
+            border: solid 2px pink;
+			padding: 5px;
+			max-width: 890px; 
+            text-align: center;
+        }
+		
+        .sec_name{
+           border: solid 2px blue;
+           padding: 5px;
+           max-width: 890px; 
+           text-align: center;
+        }
+        
+        .sec_begin {
+            border: solid 2px purple;
+            padding: 5px;
+            max-width: 890px; 
+            text-align: center;
+        }
+        
+        .sec_cards {
+			border: solid 2px red;
+			padding: 5px;
+			max-width: 500px;
+		}
+
+		.sec_cards img {
+			display: inline-block;
+			border: solid 1px black;
+			
+            padding: 7px;
+			margin: 0.5px;
+			
+			width: 63px;
+			height: 88px;
+		}
+		
+		.container {
+			width: 320px;
+			margin-left: auto;
+			margin-right: auto;
+			/* To see the outline of the form */
+			padding: 2em;
+			border: 1px solid #CCC;
+			border-radius: 1em;
+			
+			text-align: center;
+		}
+		
+        .sec_score {
+            border: solid 2px orange;
+			padding: 5px;
+			max-width: 890px; 
+            text-align: center;
+        }
+        
+        .sec_exit {
+            border: solid 2px violet;
+			padding: 5px;
+			max-width: 890px;  
+            text-align: center;
+            
+        }
+		        
+		#btn {
+			/*height: 40px;*/
+			box-sizing: border-box;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			text-align:center;
+			font-size: 1.2rem;
+			background-color: red;
+			color: white;
+			text-shadow: 1px 1px 1px black;
+			border-radius: 15px;
+			border: 1px solid rgb(204, 0, 0);
+			
+			background-image: black;
+			background-image: linear-gradient(to top left, grey, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.2) 30%);
+			box-shadow: 2px 2px 2px black,
+					   inset 2px 2px 5px rgba(0,0,0,0.5),
+					   inset -2px -2px 5px rgba(255,255,255,0.5);
+					   
+			margin-top: 
+		}
+        
+        .btn_enter {
+            width: 290px;
+            margin-top: 3em;
+            margin-bottom: 3em;
+        }
+        
+        .btn_save {
+           width: 90px; 
+           height:50px;
+            margin-top: 3em;
+            
+        }
+        
+        .btn_level1, .btn_level2 {
+            width: 290px;
+            margin-top: 3em;
+            display: block;
+            margin: auto;
+            
+        }
+        
+        .btn_level1 {
+            margin-top: 3em;
+            margin-bottom: 0.8em;
+        }
+        
+        .btn_level2 {
+            margin-bottom: 3em;
+        }
+        
+        .btn_newgame {
+            width: 290px;
+            margin-top: 3em;
+            margin-bottom: 3em;
+        }
+		
+        .btn_play, .btn_exit {
+            width: 290px;
+            display: block;
+            margin: auto;
+            
+        }
+        
+        .btn_play {
+            margin-bottom: 0.8em;
+        }
+        
+        .btn_exit {
+            margin-bottom: 3em;
+        }
+        
+		.game_container {
+			border: solid 1px yellow;
+			
+			max-width: 80%;
+			
+			margin-left: auto;
+			margin-right: auto;
+			
+			overflow: auto;
+		}
+		
+        input {
+            width: 200px;
+            line-height: 30px;
+            margin-bottom: 3em;
+        }
+        
+        .icons {
+            margin-bottom: 3em;
+            margin-top: 3em;
+        }
+        
+		.game {
+			max-width: 5em;
+			
+			border: solid 1px blue;
+			
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.game .label {
+			font-size: 24px;
+			
+			text-align: center;
+		}
+		
+		.game .value {
+			font-size: 30px;
+			
+			text-align: center;
+			font-weight: bold;
+		}
+		
+        .score_container {
+            border: solid 1px yellow;
+			
+			max-width: 70%;
+			
+			margin-left: auto;
+			margin-right: auto;
+            margin-top: 3em;
+            margin-bottom: 3em;
+            			
+			overflow: auto;
+        }
+
+        .score {
+            max-width: 20em;
+			padding-left: 1em;
+            padding-right: 1em;
+			border: solid 1px blue
+			
+			margin-left: auto;
+			margin-right: auto;
+            display: inline-block;
+        
+        }
+        
+        .score .label {
+            font-size: 24px;
+			margin: auto;
+			text-align: center;
+            margin-bottom: 1em;
+            
+        }
+        .score .value {
+            font-size: 28px;
+            border: solid 1px blue;
+			
+			text-align: center;
+			font-weight: bold;
+        }
+        
+        .score_container #date {
+            float: left;
+        }
+        
+        .score_container #moves {
+            float:right;
+        }
+		
+	</style>
+  </head>
+ 
+ <body>
+
+    <header>
+      <div id="header-title">
+        <h1></h1>
+      </div>
+    </header>
+
+   
+	<main>
+        
+        <section class="sec_welcome">
+        <h1>Check your Memory!</h1>
+            <button id="btn" class="btn_enter">Enter</button>
+        </section>
+        
+        <section class="sec_name">
+            <h1>Enter your name</h1>
+             <label for="name"></label>
+            <input name="name" id="name">
+            
+            <button id="btn" class="btn_save">Save</button>
+        </section>
+        
+        <section class="sec_begin">
+        <h1> Hello Steve!</h1>
+            <h2>Clic to begin</h2>
+            
+            <div class="begin_container">
+				<button id="btn" class="btn_level1">Level 1</button>
+                <button id="btn" class="btn_level2">Level 2</button>
+			</div>
+        </section>
+        
+           <section class="sec_score">
+        <h1>Your scores, Steve:</h1>
+            
+            <div class="score_container">
+                <div id="date" class="score">
+					<div class="label">Date</div>
+					<div class="value">12/07/2018</div>
+				</div>
+                    <div id="time" class="score">
+					<div class="label">Time</div>
+					<div class="value">360</div>
+				</div>
+				
+				<div id="moves" class="score">
+					<div class="label">Moves</div>
+					<div class="value">5</div>
+				</div> 
+                
+            </div>
+            
+            <div class="btncontainer">
+				<button id="btn" class="btn_play">Play again?</button>
+                <button id="btn" class="btn_exit">Exit Memory</button>
+			</div>
+            
+        </section>
+            
+        <section class="sec_exit">
+            <h1>Tell your friends about Memory!</h1>
+            
+            <div class="icons">
+                <img src="images/fb.png" />
+			    <img src="images/tweet.png" />
+			    <img src="images/google.png" />
+			    <img src="images/pint.png" />
+            </div>
+            
+        </section>
+    
+        <section class="sec_cards">
+			<img src="images/pair1.png" />
+			<img src="images/icon.png" />
+			<img src="images/pair1.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/pair2.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/pair2.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+            <img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+			<img src="images/icon.png" />
+
+		</section>
+
+        
+
+        <section class="container">
+			<div class="game_container">
+				<div id="time" class="game">
+					<div class="label">Time</div>
+					<div class="value">360</div>
+				</div>
+				
+				<div id="moves" class="game">
+					<div class="label">Moves</div>
+					<div class="value">5</div>
+				</div> 
+			</div>
+			
+			<button id="btn" class="btn_newgame">New Game</button>
+		</section>
+        
+        
+        
+    </main>
+ </body>
+</html>
