@@ -10,10 +10,10 @@
 	<style type="text/css">
 		@media screen and (max-width: 600px) {
 			main {
-				max-width: 600px
+				max-width: 600px;
 			}
 			
-			.sec_cards {
+			.cards {
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -30,11 +30,11 @@
 		
 		@media screen and (min-width: 601px) {
 			main {
-				max-width: 900px
-                    font-family: Roboto;
+				max-width: 900px;
+				font-family: Roboto;
 			}
 			
-			.sec_cards {
+			.cards {
 				float: left;
 			}
 			
@@ -63,11 +63,17 @@
             font-family: Roboto;
 		}
 		
+		main > section {
+			clear: both;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
         .sec_welcome {
             border: solid 2px pink;
 			padding: 5px;
 			max-width: 890px; 
-            height: 370px;
+            /*height: 370px;*/
             text-align: center;
         }
 		
@@ -75,7 +81,7 @@
            border: solid 2px blue;
            padding: 5px;
            max-width: 890px; 
-           height: 370px;    
+           /*height: 370px;*/
            text-align: center;
         }
         
@@ -83,7 +89,7 @@
             border: solid 2px purple;
             padding: 5px;
             max-width: 890px;
-            height: 370px;
+            /*height: 370px;*/
             text-align: center;
         }
         
@@ -91,6 +97,7 @@
 			border: solid 2px red;
 			padding: 5px;
 			max-width: 500px;
+			overflow: auto;
 		}
 
 		.sec_cards img {
@@ -120,7 +127,7 @@
             border: solid 2px orange;
 			padding: 5px;
 			max-width: 890px; 
-            height: 370px;
+            /*height: 370px;*/
             text-align: center;
         }
         
@@ -298,6 +305,43 @@
             float:right;
         }
 		
+		
+		/* domyślnie wszystkie sekcje są niewidoczne */
+		/* zakomentuj poniższą regułę żeby zobaczyć wszystkie sekcje */
+		main > section {
+            display: none;
+           /* visibility: visible;*/
+		}
+		
+		/* ekran powitalny pojawi się tylko gdy na <main> ustawimy class="sec_welcome" */
+		main.sec_welcome > section.sec_welcome {
+			display: block;
+		}
+		
+		/* ekran wybóru gracza pojawi się tylko gdy na <main> ustawimy class="sec_name" */
+		main.sec_name > section.sec_name {
+			display: block;
+		}
+		
+		/* ekran wyboru trudności gry pojawi się gdy na <main> ustawimy class="sec_begin" */
+		main.sec_begin > section.sec_begin {
+			display: block;
+		}
+		
+		/* a teraz musisz dodać reguły dla pozostałych sekcji :) */
+        
+        main.sec_cards > section.sec_begin {
+            display: block;
+        }
+        
+        main.sec_score > section.sec_score {
+            display: block;
+        }
+        
+        main.sec_exit > section.sec_exit {
+            display: block;
+        }
+		
 	</style>
   </head>
  
@@ -310,7 +354,7 @@
     </header>
 
    
-	<main>
+	<main class="sec_begin">
         
         <section class="sec_welcome">
         <h1>Check your Memory!</h1>
@@ -327,7 +371,7 @@
         
         <section class="sec_begin">
         <h1> Hello Steve!</h1>
-            <h2>Clic to begin</h2>
+            <h2>Click to begin</h2>
             
             <div class="begin_container">
 				<button id="btn" class="btn_level1">Level 1</button>
@@ -335,7 +379,71 @@
 			</div>
         </section>
         
-           <section class="sec_score">
+		
+		<section class="sec_cards">
+			<div class="cards">
+				<img src="images/pair1.png" />
+				<img src="images/icon.png" />
+				<img src="images/pair1.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/pair2.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/pair2.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+				<img src="images/icon.png" />
+			</div>
+
+			<div class="container">
+				<div class="game_container">
+					<div id="time" class="game">
+						<div class="label">Time</div>
+						<div class="value">360</div>
+					</div>
+					
+					<div id="moves" class="game">
+						<div class="label">Moves</div>
+						<div class="value">5</div>
+					</div> 
+				</div>
+				
+				<button id="btn" class="btn_newgame">New Game</button>
+			</div>
+		</section>
+		
+		<section class="sec_score">
         <h1>Your scores, Steve:</h1>
             
             <div class="score_container">
@@ -372,73 +480,7 @@
 			    <img src="images/pint.png" />
             </div>
             
-        </section>
-    
-        <section class="sec_cards">
-			<img src="images/pair1.png" />
-			<img src="images/icon.png" />
-			<img src="images/pair1.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/pair2.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/pair2.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-            <img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-			<img src="images/icon.png" />
-
-		</section>
-
-        
-
-        <section class="container">
-			<div class="game_container">
-				<div id="time" class="game">
-					<div class="label">Time</div>
-					<div class="value">360</div>
-				</div>
-				
-				<div id="moves" class="game">
-					<div class="label">Moves</div>
-					<div class="value">5</div>
-				</div> 
-			</div>
-			
-			<button id="btn" class="btn_newgame">New Game</button>
-		</section>
-        
-        
+        </section>    
         
     </main>
  </body>
