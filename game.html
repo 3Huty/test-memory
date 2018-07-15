@@ -153,7 +153,7 @@
             
         }
 		        
-		#btn {
+		.btn {
 			/*height: 40px;*/
 			box-sizing: border-box;
 			padding-top: 10px;
@@ -356,70 +356,42 @@
         }
 		
 	</style>
-      
-      
-      <script type="text/javascript">
-          
-          $(document).ready(function() {
-     
-});
 
-          
-          var btn;
-          
-        window.onload = function() {
-			console.log("Wiem ze strona zaladowala sie");
+
+		<script type="text/javascript">
 			
-			// zacznij wykonywać kod JS dopiero gdy cała strona się wczyta razem ze wszyskimi grafikami oraz stylami i innymi JSami
-			
-		
-			// tu zacznij dodawać kod javascriptowy
-			document.getElementsByClassName("btn_enter").onclic = enterGame;
-			
-			
- 		}
-		
-		
-		
-		// ustawiamy edytor w odpowiedni trybie
-		// new - wprowadzamy treść nowego zadania
-		//		przycisk Delete nie jest widoczny
-		//
-		// edit - modyfikujemy treść wybranego zadania
-		//		jest widoczny przycisk Delete
-		function enterGame() {
-			var btn = document.getElementsByClassName("btn_enter");
-            var main = document.getElementsByName("main");
-						
-			if (btn == "btn_enter") {
-                main.className = "sec_welcome";
-                
-                main.style.visibility = hidden
+			window.onload = function() {
+				// zacznij wykonywać kod JS dopiero gdy cała strona się wczyta razem ze wszyskimi grafikami oraz stylami i innymi JSami
+				console.log("Wiem ze strona zaladowala sie");
+				console.log("Bardzo się cieszę");
 				
-            }
-        }
+				// tu zacznij dodawać kod javascriptowy
+				document.getElementById("btnEnter").onclick = enterGame;
+				document.getElementById("btnSaveName").onclick = saveName;
+				
+			}
 			
-			//btn.focus();	  
-          
-          
-        //  <div id="editor" class="new" style="visibility: hidden;">
-     // <label for="item">What do I need to do?</label>
-     // <textarea name="item" id="item" class="alert" placeholder="Write what you need to do" cols="40" rows="5"></textarea>
-      
+
+			function enterGame() {
+				var main = document.getElementById("pagesContainer");
+							
+				main.className = "sec_name";
+			}
             
-      //      <main class="sec_cards">
-        
-      //  <section class="sec_welcome">
-        // <h1>Check your Memory!</h1>
-           // <button id="btn" class="btn_enter">Enter</button>
-        //</section>
-          
-          
-          
-      </script>
-  </head>
+            
+            function saveName() {
+               var main = document.getElementById("pagesContainer");
+                
+                main.className = "sec_begin"  
+			
+            }
+            
+            
+            
+		</script>
+	</head>
  
- <body>
+	<body>
 
     <header>
       <div id="header-title">
@@ -428,19 +400,19 @@
     </header>
 
    
-	<main class="sec_cards">
+	<main id="pagesContainer" class="sec_welcome">
         
-        <section class="sec_welcome">
-        <h1>Check your Memory!</h1>
-            <button id="btn" class="btn_enter">Enter</button>
+		<section class="sec_welcome">
+			<h1>Check your Memory!</h1>
+            <button id="btnEnter" class="btn btn_enter">Enter</button>
         </section>
         
         <section class="sec_name">
-            <h1>Enter your name</h1>
-             <label for="name"></label>
-            <input name="name" id="name">
+			<h1>Enter your name</h1>
+			<label for="name"></label>
+            <input name="name" class="alert" id="name" placeholder="Your name here">
             
-            <button id="btn" class="btn_save">Save</button>
+            <button id="btnSaveName" class="btn btn_save">Save</button>
         </section>
         
         <section class="sec_begin">
@@ -448,8 +420,8 @@
             <h2>Click to begin</h2>
             
             <div class="begin_container">
-				<button id="btn" class="btn_level1">Level 1</button>
-                <button id="btn" class="btn_level2">Level 2</button>
+				<button id="btnLevel1" class="btn btn_level1">Level 1</button>
+                <button id="btnLevel2" class="btn btn_level2">Level 2</button>
 			</div>
         </section>
         
@@ -513,7 +485,7 @@
 					</div> 
 				</div>
 				
-				<button id="btn" class="btn_newgame">New Game</button>
+				<button id="btnNewGame" class="btn btn_newgame">New Game</button>
 			</div>
 		</section>
 		
@@ -538,8 +510,8 @@
             </div>
             
             <div class="btncontainer">
-				<button id="btn" class="btn_play">Play again?</button>
-                <button id="btn" class="btn_exit">Exit Memory</button>
+				<button id="btnPlayAgain" class="btn btn_play">Play again?</button>
+                <button id="btnExit" class="btn btn_exit">Exit Memory</button>
 			</div>
             
         </section>
