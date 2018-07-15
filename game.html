@@ -100,7 +100,8 @@
 			overflow: auto;
 		}
 
-		.sec_cards img {
+		
+		.sec_cards .cards > span {
 			display: inline-block;
 			border: solid 1px black;
 			
@@ -109,7 +110,19 @@
 			
 			width: 63px;
 			height: 88px;
+			
+			
+			background-image: url('images/icon.png');
+			background-repeat: no-repeat;
+			/* background-position oraz padding do zlikwidowania gdy będą gotowe wszystkie obrazki kart */
+			background-position: 7px 7px;
 		}
+		
+		/* awers znika i widać rewers */
+		.sec_cards .cards > span.rewers > img {
+			visibility: hidden;
+		}
+		
 		
 		.container {
 			width: 320px;
@@ -153,7 +166,7 @@
 			border-radius: 15px;
 			border: 1px solid rgb(204, 0, 0);
 			
-			background-image: black;
+			background-color: red;
 			background-image: linear-gradient(to top left, grey, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.2) 30%);
 			box-shadow: 2px 2px 2px black,
 					   inset 2px 2px 5px rgba(0,0,0,0.5),
@@ -330,7 +343,7 @@
 		
 		/* a teraz musisz dodać reguły dla pozostałych sekcji :) */
         
-        main.sec_cards > section.sec_begin {
+        main.sec_cards > section.sec_cards {
             display: block;
         }
         
@@ -343,6 +356,67 @@
         }
 		
 	</style>
+      
+      
+      <script type="text/javascript">
+          
+          $(document).ready(function() {
+     
+});
+
+          
+          var btn;
+          
+        window.onload = function() {
+			console.log("Wiem ze strona zaladowala sie");
+			
+			// zacznij wykonywać kod JS dopiero gdy cała strona się wczyta razem ze wszyskimi grafikami oraz stylami i innymi JSami
+			
+		
+			// tu zacznij dodawać kod javascriptowy
+			document.getElementsByClassName("btn_enter").onclic = enterGame;
+			
+			
+ 		}
+		
+		
+		
+		// ustawiamy edytor w odpowiedni trybie
+		// new - wprowadzamy treść nowego zadania
+		//		przycisk Delete nie jest widoczny
+		//
+		// edit - modyfikujemy treść wybranego zadania
+		//		jest widoczny przycisk Delete
+		function enterGame() {
+			var btn = document.getElementsByClassName("btn_enter");
+            var main = document.getElementsByName("main");
+						
+			if (btn == "btn_enter") {
+                main.className = "sec_welcome";
+                
+                main.style.visibility = hidden
+				
+            }
+        }
+			
+			//btn.focus();	  
+          
+          
+        //  <div id="editor" class="new" style="visibility: hidden;">
+     // <label for="item">What do I need to do?</label>
+     // <textarea name="item" id="item" class="alert" placeholder="Write what you need to do" cols="40" rows="5"></textarea>
+      
+            
+      //      <main class="sec_cards">
+        
+      //  <section class="sec_welcome">
+        // <h1>Check your Memory!</h1>
+           // <button id="btn" class="btn_enter">Enter</button>
+        //</section>
+          
+          
+          
+      </script>
   </head>
  
  <body>
@@ -354,7 +428,7 @@
     </header>
 
    
-	<main class="sec_begin">
+	<main class="sec_cards">
         
         <section class="sec_welcome">
         <h1>Check your Memory!</h1>
@@ -382,48 +456,48 @@
 		
 		<section class="sec_cards">
 			<div class="cards">
-				<img src="images/pair1.png" />
-				<img src="images/icon.png" />
-				<img src="images/pair1.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/pair2.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/pair2.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
-				<img src="images/icon.png" />
+				<span><img src="images/pair1.png" /></span>
+				<span class="rewers"><img src="images/pair5.png" /></span>
+				<span><img src="images/pair1.png" /></span>
+				<span class="rewers"><img src="images/pair6.png" /></span>
+				<span class="rewers"><img src="images/pair7.png" /></span>
+				<span class="rewers"><img src="images/pair10.png" /></span>
+				<span class="rewers"><img src="images/pair21.png" /></span>
+				<span class="rewers"><img src="images/pair13.png" /></span>
+				<span class="rewers"><img src="images/pair14.png" /></span>
+				<span class="rewers"><img src="images/pair8.png" /></span>
+				<span class="rewers"><img src="images/pair16.png" /></span>
+				<span class="rewers"><img src="images/pair9.png" /></span>
+				<span class="rewers"><img src="images/pair21.png" /></span>
+				<span><img src="images/pair2.png" /></span>
+				<span class="rewers"><img src="images/pair11.png" /></span>
+				<span class="rewers"><img src="images/pair14.png" /></span>
+				<span class="rewers"><img src="images/pair17.png" /></span>
+				<span class="rewers"><img src="images/pair17.png" /></span>
+				<span class="rewers"><img src="images/pair7.png" /></span>
+				<span class="rewers"><img src="images/pair12.png" /></span>
+				<span class="rewers"><img src="images/pair15.png" /></span>
+				<span class="rewers"><img src="images/pair13.png" /></span>
+				<span><img src="images/pair2.png" /></span>
+				<span class="rewers"><img src="images/pair18.png" /></span>
+				<span class="rewers"><img src="images/pair9.png" /></span>
+				<span class="rewers"><img src="images/pair19.png" /></span>
+				<span class="rewers"><img src="images/pair22.png" /></span>
+				<span class="rewers"><img src="images/pair23.png" /></span>
+				<span class="rewers"><img src="images/pair22.png" /></span>
+				<span class="rewers"><img src="images/pair5.png" /></span>
+				<span class="rewers"><img src="images/pair20.png" /></span>
+				<span class="rewers"><img src="images/pair10.png" /></span>
+				<span class="rewers"><img src="images/pair16.png" /></span>
+				<span class="rewers"><img src="images/pair23.png" /></span>
+				<span class="rewers"><img src="images/pair6.png" /></span>
+				<span class="rewers"><img src="images/pair11.png" /></span>
+				<span class="rewers"><img src="images/pair15.png" /></span>
+				<span class="rewers"><img src="images/pair18.png" /></span>
+				<span class="rewers"><img src="images/pair12.png" /></span>
+				<span class="rewers"><img src="images/pair8.png" /></span>
+				<span class="rewers"><img src="images/pair20.png" /></span>
+				<span class="rewers"><img src="images/pair19.png" /></span>
 			</div>
 
 			<div class="container">
