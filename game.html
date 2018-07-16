@@ -354,12 +354,16 @@
         main.sec_exit > section.sec_exit {
             display: block;
         }
-		
+        
+
+        
 	</style>
 
 
 		<script type="text/javascript">
-			
+			var main = document.getElementById("pagesContainer");
+            
+            
 			window.onload = function() {
 				// zacznij wykonywać kod JS dopiero gdy cała strona się wczyta razem ze wszyskimi grafikami oraz stylami i innymi JSami
 				console.log("Wiem ze strona zaladowala sie");
@@ -373,20 +377,22 @@
 			
 
 			function enterGame() {
-				var main = document.getElementById("pagesContainer");
-							
+				main = document.getElementById("pagesContainer");	
 				main.className = "sec_name";
 			}
             
-            
-            function saveName() {
-               var main = document.getElementById("pagesContainer");
+            function saveName() {      
+			var input = document.querySelector("#name");
+			if (input.value.length == 0) {
+                alert('Enter your name');
+                return;
+			}
                 
-                main.className = "sec_begin"  
-			
+                main.className = "sec_begin";  
             }
             
             
+			
             
 		</script>
 	</head>
