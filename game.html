@@ -375,23 +375,19 @@
                 document.getElementById("btnLevel1").onclick = beginLevelOne;
                 document.getElementById("btnLevel2").onclick = beginLevelTwo;
                 document.getElementById("btnNewGame").onclick = newGame;
-				
-			}
-			
-
-			function enterGame() {
-				main = document.getElementById("pagesContainer");	
-				main.className = "sec_name";
-			}
+            }
             
+            function enterGame() {
+                main = document.getElementById("pagesContainer");	
+                main.className = "sec_name";
+			}
             
             function saveName() {      
-			var input = document.querySelector("#name");
-			if (input.value.length == 0) {
-                alert('Enter your name');
-                return;
-			}
-                
+                var input = document.querySelector("#name");
+                if (input.value.length == 0) {
+                    alert('Enter your name');
+                    return;
+                }
                 main.className = "sec_begin";  
             }
             
@@ -400,7 +396,7 @@
             }
             
             function beginLevelTwo() {
-				main.className = "sec_cards";
+                main.className = "sec_cards";
                 
             }
 			
