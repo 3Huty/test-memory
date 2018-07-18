@@ -355,7 +355,10 @@
             display: block;
         }
         
-
+         #name.alert:empty {
+        border: solid 1px red;
+        }
+        
         
 	</style>
 
@@ -382,14 +385,22 @@
                 main.className = "sec_name";
 			}
             
-            function saveName() {      
+            function saveName() {   
                 var input = document.querySelector("#name");
                 if (input.value.length == 0) {
-                    alert('Enter your name');
+                    var alert = document.getElementById("name");
+                    alert.className = "alert"; 
                     return;
                 }
+                
+                if(input == undefined) {
+                    var newName = document.createElement("span");
+                    newName.innerHTML = input.value;
+                }          
+                
                 main.className = "sec_begin";  
             }
+            
             
             function beginLevelOne() {
                 main.className = "sec_cards";
@@ -430,10 +441,11 @@
             <input name="name" class="alert" id="name" placeholder="Your name here">
             
             <button id="btnSaveName" class="btn btn_save">Save</button>
-        </section>
+            
+            </section>
         
         <section class="sec_begin">
-        <h1> Hello Steve!</h1>
+        <h1>Hello <span class="name"></span>!</h1>
             <h2>Click to begin</h2>
             
             <div class="begin_container">
