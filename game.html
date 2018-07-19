@@ -393,10 +393,9 @@
                     return;
                 }
                 
-                if(input == undefined) {
-                    var newName = document.createElement("span");
-                    newName.innerHTML = input.value;
-                }          
+                input.innerHTML = input.value;
+                var span = document.getElementById("new_name");
+                span.textContent = input.value;
                 
                 main.className = "sec_begin";  
             }
@@ -438,14 +437,14 @@
         <section class="sec_name">
 			<h1>Enter your name</h1>
 			<label for="name"></label>
-            <input name="name" class="alert" id="name" placeholder="Your name here">
+            <input name="name" id="name" placeholder="Your name here">
             
             <button id="btnSaveName" class="btn btn_save">Save</button>
             
             </section>
         
         <section class="sec_begin">
-        <h1>Hello <span class="name"></span>!</h1>
+        <h1>Hello <span id="new_name"class="name"></span>!</h1>
             <h2>Click to begin</h2>
             
             <div class="begin_container">
