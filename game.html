@@ -148,7 +148,7 @@
             border: solid 2px violet;
 			padding: 5px;
 			max-width: 890px;  
-            height: 370px;
+            /*height: 370px;*/
             text-align: center;
             
         }
@@ -365,6 +365,7 @@
 
 		<script type="text/javascript">
 			var main;
+            var difficultyLevel;
             
             
 			window.onload = function() {
@@ -375,9 +376,12 @@
 				// tu zacznij dodawać kod javascriptowy
 				document.getElementById("btnEnter").onclick = enterGame;
 				document.getElementById("btnSaveName").onclick = saveName;
-                document.getElementById("btnLevel1").onclick = beginLevelOne;
-                document.getElementById("btnLevel2").onclick = beginLevelTwo;
+                document.getElementById("btnLevel1").onclick = prepareGame;
+                document.getElementById("btnLevel2").onclick = prepareGame;
                 document.getElementById("btnNewGame").onclick = newGame;
+                
+                document.getElementById("btnPlayAgain").onclick = playAgain;
+                document.getElementById("btnExit").onclick = exitMemory;
             }
             
             function enterGame() {
@@ -393,7 +397,7 @@
                     return;
                 }
                 
-                input.innerHTML = input.value;
+                
                 var span = document.getElementById("new_name");
                 span.textContent = input.value;
                 
@@ -401,17 +405,53 @@
             }
             
             
-            function beginLevelOne() {
-                main.className = "sec_cards";
-            }
-            
-            function beginLevelTwo() {
-                main.className = "sec_cards";
+            function prepareGame() {
+                difficultyLevel = event.target.dataset.level;
+                
+                function playGame() {
+                 main.className = "sec_cards";   
+                }
+                
+                var n;
+                var i;
+                n = difficultyLevel;      
+                
+                var cardDeck = [];
+                while(n >0) {
+                    cardDeck.push(n);
+                    cardDeck.push(n)
+                    n--;
+                }
+                
+                var shuffle = [];
+                
+                while(cardDeck.length > 0) {
+                    i = Math.floor(Math.random() * cardDeck.length);
+                    shuffle.push(cardDeck[i]);
+                    cardDeck.splice(i, 1);
+                }
+
                 
             }
+            
+            
 			
             function newGame() {
                 main.className = "sec_begin";
+                
+                
+                
+                
+                
+                
+            }
+            
+            function playAgain() {
+                main.className = "sec_begin";
+            }
+            
+            function exitMemory() {
+                main.className = "sec_exit";
             }
             
             
@@ -448,8 +488,8 @@
             <h2>Click to begin</h2>
             
             <div class="begin_container">
-				<button id="btnLevel1" class="btn btn_level1">Level 1</button>
-                <button id="btnLevel2" class="btn btn_level2">Level 2</button>
+				<button id="btnLevel1" data-level="easy" class="btn btn_level1">Level 1</button>
+                <button id="btnLevel2" data-level="hard"class="btn btn_level2">Level 2</button>
 			</div>
         </section>
         
@@ -504,12 +544,12 @@
 				<div class="game_container">
 					<div id="time" class="game">
 						<div class="label">Time</div>
-						<div class="value">360</div>
+						<div class="value">0</div>
 					</div>
 					
 					<div id="moves" class="game">
 						<div class="label">Moves</div>
-						<div class="value">5</div>
+						<div class="value">0</div>
 					</div> 
 				</div>
 				
@@ -518,7 +558,7 @@
 		</section>
 		
 		<section class="sec_score">
-        <h1>Your scores, Steve:</h1>
+        <h1>Your scores,<span id="score_name"class="name"></span></h1>
             
             <div class="score_container">
                 <div id="date" class="score">
@@ -548,10 +588,10 @@
             <h1>Tell your friends about Memory!</h1>
             
             <div class="icons">
-                <img src="images/fb.png" />
-			    <img src="images/google.png" />
-                <img src="images/tweet.png" />
-			    <img src="images/pint.png" />
+                <a href="https://www.facebook.com/"><img src="images/fb.png" /></a>
+                <a href="https://plus.google.com/discover"><img src="images/google.png" /></a>
+                <a href="https://twitter.com/"><img src="images/tweet.png" /></a>
+                <a href="https://pl.pinterest.com/"><img src="images/pint.png" /></a>
             </div>
             
         </section>    
