@@ -414,7 +414,7 @@
                 
                 var n;
                 var i;
-                n = difficultyLevel;      
+                n = difficultyLevel;  //gdzie mam to 15 ustawić?
                 
                 var cardDeck = [];
                 while(n >0) {
@@ -424,18 +424,17 @@
                 }
                 
                 var shuffle = [];
-                
                 while(cardDeck.length > 0) {
                     i = Math.floor(Math.random() * cardDeck.length);
                     shuffle.push(cardDeck[i]);
                     cardDeck.splice(i, 1);
                 }
 
-                
+                var cardsList = document.getElementById("cards");
+                cardsList.innerHTML = "";
             }
             
             
-			
             function newGame() {
                 main.className = "sec_begin";
                 
@@ -495,7 +494,7 @@
         
 		
 		<section class="sec_cards">
-			<div class="cards">
+			<div id="cards" class="cards">
 				<span><img src="images/pair1.png" /></span>
 				<span class="rewers"><img src="images/pair5.png" /></span>
 				<span><img src="images/pair1.png" /></span>
