@@ -405,21 +405,17 @@
             }
             
             
-            function prepareGame() {
-                difficultyLevel = event.target.dataset.level;
-                
-                function playGame() {
-                 main.className = "sec_cards";   
-                }
+            function prepareGame(event) {
+                difficultyLevel = parseInt(event.target.dataset.level);		// tutaj pobiorę liczbę par kart, zatem stopień trudności
                 
                 var n;
                 var i;
-                n = difficultyLevel;  //gdzie mam to 15 ustawić?
+                n = difficultyLevel;
                 
                 var cardDeck = [];
-                while(n >0) {
+                while(n > 0) {
                     cardDeck.push(n);
-                    cardDeck.push(n)
+                    cardDeck.push(n);
                     n--;
                 }
                 
@@ -429,19 +425,41 @@
                     shuffle.push(cardDeck[i]);
                     cardDeck.splice(i, 1);
                 }
-                // oto chodzi z tym czyszczeniem div?
+
                 var cardsList = document.getElementById("cards");
                 cardsList.innerHTML = "";
+                
+                
+                
+				var cards = document.querySelector(".cards");
+                //nie wiem jak połączyć tę pętle z shuffle
+                for (i = 0; i <= 15; i++) {
+                    var newCard = document.createElement("img");
+                    newCard.setAttribute("src", "images/pair" + i + ".png");
+                             
+                    var span = document.createElement("span");
+                    span.setAttribute("data-pair", i);
+                    
+                    //nie wiem jak włożyć img do tego span
+                    cards.appendChild(span);
+  
+                    
+                    
+				
+				// teraz będę położę karty na stole
+				
+				// i na koniec pokazujemy ekras gry
+				playGame();
             }
+			
+			
+			function playGame() {
+				main.className = "sec_cards";   
+			}			
             
             
             function newGame() {
-                main.className = "sec_begin";
-                
-                
-                
-                
-                
+                main.className = "sec_begin";      
                 
             }
             
@@ -487,57 +505,14 @@
             <h2>Click to begin</h2>
             
             <div class="begin_container">
-				<button id="btnLevel1" data-level="easy" class="btn btn_level1">Level 1</button>
-                <button id="btnLevel2" data-level="hard"class="btn btn_level2">Level 2</button>
+				<button id="btnLevel1" data-level="15" class="btn btn_level1">Level Easy</button>
+                <button id="btnLevel2" data-level="21"class="btn btn_level2">Level Hard</button>
 			</div>
         </section>
         
 		
 		<section class="sec_cards">
-			<div id="cards" class="cards">
-				<span><img src="images/pair1.png" /></span>
-				<span class="rewers"><img src="images/pair5.png" /></span>
-				<span><img src="images/pair1.png" /></span>
-				<span class="rewers"><img src="images/pair6.png" /></span>
-				<span class="rewers"><img src="images/pair7.png" /></span>
-				<span class="rewers"><img src="images/pair10.png" /></span>
-				<span class="rewers"><img src="images/pair21.png" /></span>
-				<span class="rewers"><img src="images/pair13.png" /></span>
-				<span class="rewers"><img src="images/pair14.png" /></span>
-				<span class="rewers"><img src="images/pair8.png" /></span>
-				<span class="rewers"><img src="images/pair16.png" /></span>
-				<span class="rewers"><img src="images/pair9.png" /></span>
-				<span class="rewers"><img src="images/pair21.png" /></span>
-				<span><img src="images/pair2.png" /></span>
-				<span class="rewers"><img src="images/pair11.png" /></span>
-				<span class="rewers"><img src="images/pair14.png" /></span>
-				<span class="rewers"><img src="images/pair17.png" /></span>
-				<span class="rewers"><img src="images/pair17.png" /></span>
-				<span class="rewers"><img src="images/pair7.png" /></span>
-				<span class="rewers"><img src="images/pair12.png" /></span>
-				<span class="rewers"><img src="images/pair15.png" /></span>
-				<span class="rewers"><img src="images/pair13.png" /></span>
-				<span><img src="images/pair2.png" /></span>
-				<span class="rewers"><img src="images/pair18.png" /></span>
-				<span class="rewers"><img src="images/pair9.png" /></span>
-				<span class="rewers"><img src="images/pair19.png" /></span>
-				<span class="rewers"><img src="images/pair22.png" /></span>
-				<span class="rewers"><img src="images/pair23.png" /></span>
-				<span class="rewers"><img src="images/pair22.png" /></span>
-				<span class="rewers"><img src="images/pair5.png" /></span>
-				<span class="rewers"><img src="images/pair20.png" /></span>
-				<span class="rewers"><img src="images/pair10.png" /></span>
-				<span class="rewers"><img src="images/pair16.png" /></span>
-				<span class="rewers"><img src="images/pair23.png" /></span>
-				<span class="rewers"><img src="images/pair6.png" /></span>
-				<span class="rewers"><img src="images/pair11.png" /></span>
-				<span class="rewers"><img src="images/pair15.png" /></span>
-				<span class="rewers"><img src="images/pair18.png" /></span>
-				<span class="rewers"><img src="images/pair12.png" /></span>
-				<span class="rewers"><img src="images/pair8.png" /></span>
-				<span class="rewers"><img src="images/pair20.png" /></span>
-				<span class="rewers"><img src="images/pair19.png" /></span>
-			</div>
+			<div id="cards" class="cards"></div>
 
 			<div class="container">
 				<div class="game_container">
