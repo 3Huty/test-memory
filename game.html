@@ -406,12 +406,21 @@
                 var span = document.getElementById("new_name");
                 span.textContent = input.value;
                 
+                
                 main.className = "sec_begin";  
             }
             
             
             function prepareGame(event) {
+               
+                var clearMove = document.querySelector("#moves .value");
+                clearMove.innerHTML = "";
+                
+                var clearTime = document.querySelector("#time .value");
+                clearTime.innerHTML = "";
+                
                 difficultyLevel = parseInt(event.target.dataset.level);		// tutaj pobiorę liczbę par kart, zatem stopień trudności
+                
                 
                 var n;
                 var i;
@@ -419,6 +428,7 @@
                 time = 0;
                 moves = 0;
                 cardsToMatch = difficultyLevel;
+				firstCard = undefined;
                 
                 var cardDeck = [];
                 while(n > 0) {
@@ -436,10 +446,6 @@
 
                 var cardsList = document.getElementById("cards");
                 cardsList.innerHTML = "";
-                
-                
-                
-				var cards = document.querySelector(".cards");
 				
 				// elementy tablicy są numerowane od zera
                 for (i = 0; i < shuffle.length; i++) {
@@ -450,16 +456,12 @@
                     span.setAttribute("data-pair", shuffle[i]);
                     
 					span.appendChild(newCard);			// wkładam obrazek do karty żeby zakryć rewers
-                    cards.appendChild(span);			// kładę kartę na stole
-				   
-                                      
+                    cardsList.appendChild(span);		// kładę kartę na stole
+					
                     span.className = "rewers";
                 }
-                           
-                firstCard = undefined;
-                
-                
-				// i na koniec pokazujemy ekras gry
+
+				// i na koniec pokazujemy ekran gry
 				playGame();
             }
 			
@@ -482,11 +484,14 @@
                 main.className = "sec_exit";
             }
             
-            function showMoves(moves) {
-                moves = document.querySelector(".value");
-                moves.innerHTML = "";
+            function showMoves() {
+                var movesCounter = document.querySelector("#moves .value");
+                movesCounter.innerHTML = moves;
                 
+               // var movesScore = document.querySelector(".cards_score #moves .value");
+               // movesScore.innerHTML = moves;
             }
+
             
 			function cardSelected(event) {
 				var card = undefined;
@@ -501,28 +506,38 @@
 					}
 				}
                 
+				if (firstCard == card) {
+					// kliknięto 2x na te sama kartę
+					// może pokazać jakiś komunikat żeby nie klikać na tę samą kartę?
+					return;
+				}
+				
                 if (firstCard == undefined) {
-                    firstCard = card;
+					firstCard = card;
                     firstCard.className = "";
-                    
                 } else {
                     if (firstCard.dataset.pair == card.dataset.pair) {
-                        firstCard.style.visibility = hidden;
-                        card.style.visibility = hidden;
+                        firstCard.style.visibility = "hidden";
+                        card.style.visibility = "hidden";
                         cardsToMatch--;
                     } else {
                         firstCard.className = "rewers";
                     }
+					
                     firstCard = undefined;
                     
                     moves++;
-                    showMoves(moves);
+                    showMoves();
                 }
+				
 				if (cardsToMatch == 0) {
-                    main.className = "sec_scores"; 
-                }
-							
+                    main.className = "sec_score"; 
+                }			
             }
+            
+                      
+            
+            
 		</script>
 	</head>
  
@@ -563,7 +578,7 @@
         
 		
 		<section class="sec_cards">
-			<div id="cards" class="cards" style="visibility: hidden;"></div>
+			<div id="cards" class="cards"></div>
 
 			<div class="container">
 				<div class="game_container">
@@ -597,7 +612,7 @@
 				
 				<div id="moves" class="score">
 					<div class="label">Moves</div>
-					<div class="value">5</div>
+					<div class="value">0</div>
 				</div> 
                 
             </div>
