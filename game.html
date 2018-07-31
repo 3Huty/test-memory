@@ -18,11 +18,11 @@
 				margin-right: auto;
 			}
 			
-			.game_container #time {
+			.game_container #gameTime {
 				float: left;
 			}
 		
-			.game_container #moves {
+			.game_container #gameMoves {
 				float: right;
 			}
 		}
@@ -39,14 +39,14 @@
 			}
 			
 			.container {
-				float: left;
+				float: right;
 			}
 			
-			.game_container #time {
+			.game_container #gameTime {
 				float: left;
 			}
 		
-			.game_container #moves {
+			.game_container #gameMoves {
 				float: right;
 			}
 		}
@@ -118,16 +118,42 @@
 			background-position: 7px 7px;
 		}
 		
+		
+		
+		.sec_cards .cards > span > img {
+			opacity: 0;
+		}
+
+		.sec_cards .cards > span.awers > img {
+			opacity: 1.0;
+		}
+		
 		/* awers znika i widać rewers */
 		.sec_cards .cards > span.rewers > img {
-			visibility: hidden;
+			animation-name: hidecard;
+			animation-duration: 1s;
+			animation-fill-mode: forwards;
+			animation-timing-function: linear;
 		}
+		
+		@keyframes hidecard {
+			from {
+				opacity: 1.0;
+			}
+			
+			to {
+				opacity: 0;
+			}
+		}
+		
+		
 		
 		
 		.container {
 			width: 320px;
 			margin-left: auto;
 			margin-right: auto;
+            margin-top: 2em;
 			/* To see the outline of the form */
 			padding: 2em;
 			border: 1px solid #CCC;
@@ -227,7 +253,7 @@
         }
         
 		.game_container {
-			border: solid 1px yellow;
+			border: solid 1px white;
 			
 			max-width: 80%;
 			
@@ -251,7 +277,7 @@
 		.game {
 			max-width: 5em;
 			
-			border: solid 1px blue;
+			border: solid 1px white;
 			
 			margin-left: auto;
 			margin-right: auto;
@@ -271,14 +297,14 @@
 		}
 		
         .score_container {
-            border: solid 1px yellow;
+            border: solid 1px white;
 			
-			max-width: 70%;
+			max-width: 80%;
 			
 			margin-left: auto;
 			margin-right: auto;
             margin-top: 3em;
-            margin-bottom: 3em;
+            margin-bottom: 4em;
             			
 			overflow: auto;
         }
@@ -287,10 +313,11 @@
             max-width: 20em;
 			padding-left: 1em;
             padding-right: 1em;
-			border: solid 1px blue;
+			border: solid 1px white;
 			
-			margin-left: auto;
-			margin-right: auto;
+			margin-left: 4px;
+			margin-right: 4px;
+            margin-bottom: 4px;
             display: inline-block;
         
         }
@@ -303,18 +330,18 @@
             
         }
         .score .value {
-            font-size: 26px;
-            border: solid 1px blue;
+            font-size: 23px;
+            border: solid 1px white;
 			
 			text-align: center;
 			font-weight: bold;
         }
         
-        .score_container #date {
+        .score_container #scoreDate {
             float: left;
         }
         
-        .score_container #moves {
+        .score_container #scoreMoves {
             float:right;
         }
 		
@@ -370,6 +397,8 @@
             var time;
             var moves;
             var cardsToMatch;
+			var cardTimeout = undefined;
+			var gameTimer = undefined;
             
             
 			window.onload = function() {
@@ -401,27 +430,17 @@
                     alert.className = "alert"; 
                     return;
                 }
-                
-                
+
                 var span = document.getElementById("new_name");
                 span.textContent = input.value;
-                
-                
+
                 main.className = "sec_begin";  
             }
             
             
             function prepareGame(event) {
-               
-                var clearMove = document.querySelector("#moves .value");
-                clearMove.innerHTML = "";
-                
-                var clearTime = document.querySelector("#time .value");
-                clearTime.innerHTML = "";
-                
                 difficultyLevel = parseInt(event.target.dataset.level);		// tutaj pobiorę liczbę par kart, zatem stopień trudności
-                
-                
+
                 var n;
                 var i;
                 n = difficultyLevel;
@@ -429,7 +448,17 @@
                 moves = 0;
                 cardsToMatch = difficultyLevel;
 				firstCard = undefined;
-                
+
+				if (cardTimeout != undefined) {
+					window.clearTimeout(cardTimeout);			// czyścimy czekajkę z poprzedniej gry
+					cardTimeout = undefined;
+				}
+				
+				if (gameTimer != undefined) {
+					window.clearInterval(gameTimer);			// stoper też trzeba usunąć po poprzedniej grze
+					gameTimer = undefined;
+				}
+				
                 var cardDeck = [];
                 while(n > 0) {
                     cardDeck.push(n);
@@ -458,16 +487,22 @@
 					span.appendChild(newCard);			// wkładam obrazek do karty żeby zakryć rewers
                     cardsList.appendChild(span);		// kładę kartę na stole
 					
-                    span.className = "rewers";
+                    //span.className = "rewers";
                 }
 
+				// w tym momencie time = 0 i moves = 0
+				// żeby wyczyściły się wyniki z poprzedniej gry
+				showScore();
+				
 				// i na koniec pokazujemy ekran gry
 				playGame();
             }
 			
 			
 			function playGame() {
-				main.className = "sec_cards";   
+				main.className = "sec_cards";
+				
+				gameTimer = window.setInterval(updateTimer, 1000);		// zmieniamy wartość stopera co sekundę
 			}			
             
             
@@ -483,12 +518,25 @@
             function exitMemory() {
                 main.className = "sec_exit";
             }
+			
+			function updateTimer() {
+				time++;
+				
+				showScore();
+			}
             
-            function showMoves() {
-                var movesCounter = document.querySelector("#moves .value");
-                movesCounter.innerHTML = moves;
+            function showScore() {
+                var value = document.querySelector("#gameMoves .value");
+                value.innerHTML = moves;
                 
+				value = document.querySelector("#gameTime .value");
+                value.innerHTML = time;
                
+				value = document.querySelector("#scoreMoves .value");
+                value.innerHTML = moves;
+                
+				value = document.querySelector("#scoreTime .value");
+                value.innerHTML = time;
             }
 
             
@@ -505,38 +553,82 @@
 					}
 				}
                 
-				if (firstCard == card) {
+				if ((firstCard == card) || (cardTimeout != undefined)) {
 					// kliknięto 2x na te sama kartę
 					// może pokazać jakiś komunikat żeby nie klikać na tę samą kartę?
+					// ALBO kliknięto gdy obie karty są widoczne ale jeszcze czekamy na odpalenie
+					// funkcji sprawdzające czy obie karty z są z tej samej pary
 					return;
 				}
 				
                 if (firstCard == undefined) {
-					firstCard = card;
-                    firstCard.className = "";
+					firstCard = card;					
+                    firstCard.className = "awers";
                 } else {
-                    if (firstCard.dataset.pair == card.dataset.pair) {
-                        firstCard.style.visibility = "hidden";
-                        card.style.visibility = "hidden";
-                        cardsToMatch--;
-                    } else {
-                        firstCard.className = "rewers";
-                    }
-					
-                    firstCard = undefined;
+					// pierwsza karta już wybrana, więc to jest druga
+					card.className = "awers";
+
+					// czy to karty z tej samej pary sprawdziwy za 250 milisekund czyli 1/4 sekundy
+					cardTimeout = window.setTimeout(areCardsTheSame, 250, card);		// zapamietajmy że czekamy na odpalenie funkcji sprawdzającej
                     
                     moves++;
-                    showMoves();
+                    showScore();
                 }
-				
-				if (cardsToMatch == 0) {
-                    main.className = "sec_score"; 
-                }			
             }
-            
-                      
-            
-            
+
+
+			function areCardsTheSame(secondCard) {
+				// już mogę zwolnić
+				window.clearTimeout(cardTimeout);
+				cardTimeout = undefined;
+				
+				if (firstCard.dataset.pair == secondCard.dataset.pair) {
+					firstCard.style.visibility = "hidden";
+					secondCard.style.visibility = "hidden";
+					cardsToMatch--;
+				} else {
+					var img = firstCard.children[0];
+					img.addEventListener("animationend", hideCardsAnimationListener, false);
+					
+					img = secondCard.children[0];
+					img.addEventListener("animationend", hideCardsAnimationListener, false);
+				
+					firstCard.className = "rewers";
+					secondCard.className = "rewers";
+				}
+				
+				firstCard = undefined;
+				
+				if (cardsToMatch == 1) {
+					window.clearInterval(gameTimer);		// już nie jest potrzebny
+					gameTimer = undefined;
+					
+					// skoro została ostatnia para to już wiadomo że są tylko dwie karty z ostatniej pary
+					// więc nie ma sensu zmuszać gracza do przejścia przez jeszcze jedną turę
+                    main.className = "sec_score"; 
+					
+					// jaka jest dzisiejsza data
+					var date = new Date();
+					var day = date.getDate();
+					var month = date.getMonth() + 1;	// ponieważ miesiące są numerowane od 0
+					
+					if (day < 10) {
+						day = '0' + day;
+					}
+					
+					if (month < 10) {
+						month = '0' + month;
+					}
+					
+					var today = date.getFullYear() + '-' + month + '-' + day;
+					document.querySelector("#scoreDate .value").innerHTML = today;
+                }
+			}
+
+
+            function hideCardsAnimationListener(event) {
+				event.target.parentNode.className = "";
+			}
 		</script>
 	</head>
  
@@ -581,12 +673,12 @@
 
 			<div class="container">
 				<div class="game_container">
-					<div id="time" class="game">
+					<div id="gameTime" class="game">
 						<div class="label">Time</div>
 						<div class="value">0</div>
 					</div>
 					
-					<div id="moves" class="game">
+					<div id="gameMoves" class="game">
 						<div class="label">Moves</div>
 						<div class="value">0</div>
 					</div> 
@@ -600,16 +692,16 @@
         <h1>Your scores,<span id="score_name"class="name"></span></h1>
             
             <div class="score_container">
-                <div id="date" class="score">
+                <div id="scoreDate" class="score">
 					<div class="label">Date</div>
 					<div class="value">12/07/2018</div>
 				</div>
-                    <div id="time" class="score">
+                    <div id="scoreTime" class="score">
 					<div class="label">Time</div>
 					<div class="value">360</div>
 				</div>
 				
-				<div id="moves" class="score">
+				<div id="scoreMoves" class="score">
 					<div class="label">Moves</div>
 					<div class="value">0</div>
 				</div> 
