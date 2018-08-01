@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory</title>
+	
+	<meta property="og:url" content="http://http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Memory Game" />
+	<meta property="og:description" content="Check how good is your memory with our game" />
+	<meta property="og:image" content="https://raw.githubusercontent.com/3Huty/test-memory/master/images/icon.png" />
+	
+	
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
 	
 	<style type="text/css">
@@ -169,7 +177,7 @@
             /*height: 370px;*/
             text-align: center;
         }
-        
+
         .sec_exit {
             border: solid 2px violet;
 			padding: 5px;
@@ -634,6 +642,40 @@
  
 	<body>
 
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = 'https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v3.1';
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<script
+		type="text/javascript"
+		async defer
+		src="//assets.pinterest.com/js/pinit.js"
+	></script>
+
+	<script>window.twttr = (function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0],
+			t = window.twttr || {};
+		  if (d.getElementById(id)) return t;
+		  js = d.createElement(s);
+		  js.id = id;
+		  js.src = "https://platform.twitter.com/widgets.js";
+		  fjs.parentNode.insertBefore(js, fjs);
+
+		  t._e = [];
+		  t.ready = function(f) {
+			t._e.push(f);
+		  };
+
+		  return t;
+		}(document, "script", "twitter-wjs"));
+	</script>
+
     <header>
       <div id="header-title">
         <h1></h1>
@@ -641,7 +683,7 @@
     </header>
 
    
-	<main id="pagesContainer" class="sec_welcome">
+	<main id="pagesContainer" class="sec_score">
         
 		<section class="sec_welcome">
 			<h1>Check your Memory!</h1>
@@ -717,16 +759,33 @@
             
         <section class="sec_exit">
             <h1>Tell your friends about Memory!</h1>
-            
+  
+			<div class="fb-share-button"
+				data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"
+				data-layout="button"
+				data-size="large"
+			></div>
             <div class="icons">
-                <a href="https://www.facebook.com/"><img src="images/fb.png" /></a>
-                <a href="https://plus.google.com/discover"><img src="images/google.png" /></a>
-                <a href="https://twitter.com/"><img src="images/tweet.png" /></a>
-                <a href="https://pl.pinterest.com/"><img src="images/pint.png" /></a>
+				<!--<a href="https://www.facebook.com/"><img src="images/fb.png" /></a> -->
+                <!-- <a href="https://plus.google.com/discover"><img src="images/google.png" /></a> -->
+
+				<!-- Umieść ten tag w miejscu, w którym ma być widoczny przycisk udostępniania. -->
+				<div class="g-plus" data-action="share" data-height="24" data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"></div>
+				
+				
+                <!-- <a href="https://twitter.com/"><img src="images/tweet.png" /></a> -->
+				<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check%20this%20awsome%20Memory%20Game!!!" data-size="large">Tweet</a>
+                
+				<!-- <a href="https://pl.pinterest.com/"><img src="images/pint.png" /></a> -->
+				<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
             </div>
             
         </section>    
         
     </main>
+	
+	<script src="https://apis.google.com/js/platform.js" async defer>
+		{lang: 'pl'}
+	</script>
  </body>
 </html>
