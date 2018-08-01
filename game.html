@@ -16,12 +16,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
 	
 	<style type="text/css">
-		@media screen and (max-width: 600px) {
+		/* Telefon */
+		@media screen and (max-width: 600px) and (orientation: landscape) {
 			main {
 				max-width: 600px;
 			}
 			
-			.cards {
+			#cards {
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -35,21 +36,74 @@
 			}
 		}
 		
-		
-		@media screen and (min-width: 601px) {
+		/* Tablet */
+		@media screen and (min-width: 601px) and (orientation: landscape) {
 			main {
 				max-width: 900px;
 				font-family: Roboto;
 			}
 			
-			.cards {
+			#cards {
 				float: left;
+				max-width: 500px;
 			}
 			
-			.container {
-                float: none;
-				
-                
+			section.sec_cards > .container {
+				float: right;
+			}
+			
+			.game_container #gameTime {
+				float: left;
+			}
+		
+			.game_container #gameMoves {
+				float: right;
+			}
+		}
+	
+		/* Telefon */
+		@media screen and (max-width: 600px) and (orientation: portrait) {
+			main {
+				max-width: 600px;
+			}
+			
+			#cards {
+				margin-left: auto;
+				margin-right: auto;
+				max-width: 500px;
+			}
+			
+			.game_container #gameTime {
+				float: left;
+			}
+		
+			.game_container #gameMoves {
+				float: right;
+			}
+		}
+		
+		/* Tablet */
+		@media screen and (min-width: 601px) and (orientation: portrait) {
+			main {
+				max-width: 900px;
+				font-family: Roboto;
+			}
+			
+			#cards {
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			#cards.difficulty15 {
+				max-width: 500px;
+			}
+			
+			#cards.difficulty21 {
+				max-width: 600px;
+			}			
+			
+			section.sec_cards > .container {
+				clear: both;
 			}
 			
 			.game_container #gameTime {
@@ -79,39 +133,35 @@
 			margin-right: auto;
 		}
 		
-        .sec_welcome {
+        section.sec_welcome {
             border: solid 2px pink;
 			padding: 5px;
 			max-width: 890px; 
-            /*height: 370px;*/
             text-align: center;
         }
 		
-        .sec_name{
+        section.sec_name{
            border: solid 2px blue;
            padding: 5px;
            max-width: 890px; 
-           /*height: 370px;*/
            text-align: center;
         }
         
-        .sec_begin {
+        section.sec_begin {
             border: solid 2px purple;
             padding: 5px;
             max-width: 890px;
-            /*height: 370px;*/
             text-align: center;
         }
         
-        .sec_cards {
+        section.sec_cards {
 			border: solid 2px red;
 			padding: 5px;
-			max-width: 500px;
 			overflow: auto;
 		}
 
 		
-		.sec_cards .cards > span {
+		section.sec_cards #cards > span {
 			display: inline-block;
 			border: solid 1px black;
 			
@@ -130,16 +180,16 @@
 		
 		
 		
-		.sec_cards .cards > span > img {
+		section.sec_cards #cards > span > img {
 			opacity: 0;
 		}
 
-		.sec_cards .cards > span.awers > img {
+		section.sec_cards #cards > span.awers > img {
 			opacity: 1.0;
 		}
 		
 		/* awers znika i widać rewers */
-		.sec_cards .cards > span.rewers > img {
+		section.sec_cards #cards > span.rewers > img {
 			animation-name: hidecard;
 			animation-duration: 1s;
 			animation-fill-mode: forwards;
@@ -165,16 +215,14 @@
 			margin-right: auto;
             margin-top: 2em;
 			/* To see the outline of the form */
-            
-            /*padding-top: 4em;*/
-			padding: 3em;
+			padding: 2em;
 			border: 1px solid #CCC;
 			border-radius: 1em;
 			
 			text-align: center;
 		}
 		
-        .sec_score {
+        section.sec_score {
             border: solid 2px orange;
 			padding: 5px;
 			max-width: 890px; 
@@ -182,7 +230,7 @@
             text-align: center;
         }
 
-        .sec_exit {
+        section.sec_exit {
             border: solid 2px violet;
 			padding: 5px;
 			max-width: 890px;  
@@ -452,6 +500,7 @@
             
             function prepareGame(event) {
                 difficultyLevel = parseInt(event.target.dataset.level);		// tutaj pobiorę liczbę par kart, zatem stopień trudności
+				document.getElementById("cards").className = "difficulty" + difficultyLevel;
 
                 var n;
                 var i;
@@ -514,7 +563,7 @@
 			function playGame() {
 				main.className = "sec_cards";
 				
-				gameTimer = window.setInterval(updateTimer, 1000);		// zmieniamy wartość stopera co sekundę
+
 			}			
             
             
@@ -552,7 +601,7 @@
             }
 
             
-			function cardSelected(event) {
+			function cardSelected(event) {				
 				var card = undefined;
 				
 				if (event.target.tagName.toLowerCase() == 'img') {
@@ -576,6 +625,10 @@
                 if (firstCard == undefined) {
 					firstCard = card;					
                     firstCard.className = "awers";
+					
+					if (gameTimer == undefined) {
+						gameTimer = window.setInterval(updateTimer, 1000);		// zmieniamy wartość stopera co sekundę
+					}
                 } else {
 					// pierwsza karta już wybrana, więc to jest druga
 					card.className = "awers";
@@ -659,7 +712,7 @@
 	<script
 		type="text/javascript"
 		async defer
-		src="//assets.pinterest.com/js/pinit.js"
+		src="http://assets.pinterest.com/js/pinit.js"
 	></script>
 
 	<script>window.twttr = (function(d, s, id) {
@@ -735,7 +788,7 @@
 		</section>
 		
 		<section class="sec_score">
-        <h1>Your scores,<span id="score_name"class="name"></span></h1>
+        <h1>Your scores,<span id="score_name" class="name"></span></h1>
             
             <div class="score_container">
                 <div id="scoreDate" class="score">
@@ -773,9 +826,7 @@
 				<!--<a href="https://www.facebook.com/"><img src="images/fb.png" /></a> -->
                 <!-- <a href="https://plus.google.com/discover"><img src="images/google.png" /></a> -->
 
-				<!-- Umieść ten tag w miejscu, w którym ma być widoczny przycisk udostępniania. -->
-				<div class="g-plus" data-action="share" data-height="24" data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"></div>
-				
+				<div class="g-plus" data-action="share" data-height="24" data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"></div>				
 				
                 <!-- <a href="https://twitter.com/"><img src="images/tweet.png" /></a> -->
 				<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check%20this%20awsome%20Memory%20Game!!!" data-size="large">Tweet</a>
