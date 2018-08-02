@@ -48,7 +48,7 @@ function prepareGame(event) {
     time = 0;
     moves = 0;
     cardsToMatch = difficultyLevel;
-	firstCard = undefined;
+    firstCard = undefined;
 				
     if (cardTimeout != undefined) {
         window.clearTimeout(cardTimeout);	
@@ -85,8 +85,8 @@ function prepareGame(event) {
                              
         var span = document.createElement("span");
         span.setAttribute("data-pair", shuffle[i]);
-                    
-		span.appendChild(newCard);			// wkładam obrazek do karty żeby zakryć rewers
+        
+        span.appendChild(newCard);			// wkładam obrazek do karty żeby zakryć rewers
         cardsList.appendChild(span);		// kładę kartę na stole
 		}
     
@@ -123,14 +123,14 @@ function updateTimer() {
 function showScore() {
     var value = document.querySelector("#gameMoves .value");
     value.innerHTML = moves;
-                
-	value = document.querySelector("#gameTime .value");
+    
+    value = document.querySelector("#gameTime .value");
     value.innerHTML = time;
-               
-	value = document.querySelector("#scoreMoves .value");
+    
+    value = document.querySelector("#scoreMoves .value");
     value.innerHTML = moves;
-                
-	value = document.querySelector("#scoreTime .value");
+    
+    value = document.querySelector("#scoreTime .value");
     value.innerHTML = time;
 }
 
@@ -143,9 +143,9 @@ function cardSelected(event) {
     } else {
         if (event.target.tagName.toLowerCase() == 'span') {
             card = event.target;			// nie kliknieto na obrazek tylko na "kartę"
-			} else {
-			return;		
-			}
+        } else {
+            return;		
+        }
     }
     
     if ((firstCard == card) || (cardTimeout != undefined)) {
@@ -155,8 +155,8 @@ function cardSelected(event) {
     if (firstCard == undefined) {
         firstCard = card;
         firstCard.className = "awers";
-					
-		if (gameTimer == undefined) {
+        
+        if (gameTimer == undefined) {
             gameTimer = window.setInterval(updateTimer, 1000);		// zmieniamy wartość stopera co sekundę
         }
     } else {
@@ -174,17 +174,17 @@ function areCardsTheSame(secondCard) {
     
     if (firstCard.dataset.pair == secondCard.dataset.pair) {
         firstCard.style.visibility = "hidden";
-		secondCard.style.visibility = "hidden";
-		cardsToMatch--;
+        secondCard.style.visibility = "hidden";
+        cardsToMatch--;
     } else {
         var img = firstCard.children[0];
-		img.addEventListener("animationend", hideCardsAnimationListener, false);
-					
-		img = secondCard.children[0];
-		img.addEventListener("animationend", hideCardsAnimationListener, false);
-				
-		firstCard.className = "rewers";
-		secondCard.className = "rewers";
+        img.addEventListener("animationend", hideCardsAnimationListener, false);
+        
+        img = secondCard.children[0];
+        img.addEventListener("animationend", hideCardsAnimationListener, false);
+        
+        firstCard.className = "rewers";
+        secondCard.className = "rewers";
     }
     
     firstCard = undefined;
@@ -199,10 +199,10 @@ function areCardsTheSame(secondCard) {
         
         // dzisiejsza data
         var date = new Date();
-		var day = date.getDate();
-		var month = date.getMonth() + 1;	// miesiące są numerowane od 0
-					
-		if (day < 10) {
+        var day = date.getDate();
+        var month = date.getMonth() + 1;	// miesiące są numerowane od 0
+        
+        if (day < 10) {
             day = '0' + day;
         }
         
@@ -235,7 +235,7 @@ window.twttr = (function(d, s, id) {
         t = window.twttr || {};
     if (d.getElementById(id)) return t;
     js = d.createElement(s);
-	js.id = id;
+    js.id = id;
     js.src = "https://platform.twitter.com/widgets.js";
     fjs.parentNode.insertBefore(js, fjs);
     
