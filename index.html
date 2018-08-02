@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+	
+	<meta property="og:url" content="http://http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Memory Game" />
+	<meta property="og:description" content="Check how good is your memory with our game" />
+	<meta property="og:image" content="https://raw.githubusercontent.com/3Huty/test-memory/master/images/icon.png" />
+	
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+ 
+  <body>
+
+	<div id="fb-root"></div>
+	
+    <header>
+      <div id="header-title">
+        <h1></h1>
+      </div>
+    </header>
+
+	<main id="pagesContainer" class="sec_welcome">
+        
+		<section class="sec_welcome">
+			<h1>Check your Memory!</h1>
+            <button id="btnEnter" class="btn btn_enter">Enter</button>
+        </section>
+        
+        <section class="sec_name">
+			<h1>Enter your name</h1>
+			<label for="name"></label>
+            <input name="name" id="name" placeholder="Your name here">
+            
+            <button id="btnSaveName" class="btn btn_save">Save</button>
+        </section>
+        
+        <section class="sec_begin">
+            <h1>Hello <span id="new_name"class="name"></span>!</h1>
+            <h2>Click to begin</h2>
+            
+            <div class="begin_container">
+				<button id="btnLevel1" data-level="15" class="btn btn_level1">Level Easy</button>
+                <button id="btnLevel2" data-level="21"class="btn btn_level2">Level Hard</button>
+			</div>
+        </section>
+		
+		<section class="sec_cards">
+			<div id="cards" class="cards"></div>
+
+			<div class="container">
+                <div class="game_container">
+					<div id="gameTime" class="game">
+                        <div class="label">Time</div>
+						<div class="value">0</div>
+					</div>
+					
+					<div id="gameMoves" class="game">
+						<div class="label">Moves</div>
+						<div class="value">0</div>
+					</div> 
+				</div>
+				
+				<button id="btnNewGame" class="btn btn_newgame">New Game</button>
+			</div>
+        </section>
+		
+		<section class="sec_score">
+            <h1>Your scores,<span id="score_name" class="name"></span></h1>
+            
+            <div class="score_container">
+                <div id="scoreDate" class="score">
+					<div class="label">Date</div>
+					<div class="value">12/07/2018</div>
+				</div>
+                
+                <div id="scoreTime" class="score">
+					<div class="label">Time</div>
+					<div class="value">360</div>
+				</div>
+				
+				<div id="scoreMoves" class="score">
+					<div class="label">Moves</div>
+					<div class="value">0</div>
+				</div>
+            </div>
+            
+            <div class="btncontainer">
+				<button id="btnPlayAgain" class="btn btn_play">Play again?</button>
+                <button id="btnExit" class="btn btn_exit">Exit Memory</button>
+			</div>
+            
+        </section>
+            
+        <section class="sec_exit">
+            <h1>Tell your friends about Memory!</h1>
+  
+			<div class="fb-share-button"
+                 data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"
+				data-layout="button"
+				data-size="large"
+			></div>
+            <div class="icons">
+				<!--<a href="https://www.facebook.com/"><img src="images/fb.png" /></a> -->
+                <!-- <a href="https://plus.google.com/discover"><img src="images/google.png" /></a> -->
+
+				<div class="g-plus" data-action="share" data-height="24" data-href="http://htmlpreview.github.io/?https://github.com/3Huty/test-memory/blob/master/game.html"></div>				
+				
+                <!-- <a href="https://twitter.com/"><img src="images/tweet.png" /></a> -->
+				<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check%20this%20awsome%20Memory%20Game!!!" data-size="large">Tweet</a>
+                
+				<!-- <a href="https://pl.pinterest.com/"><img src="images/pint.png" /></a> -->
+				<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+            </div>
+            
+        </section>    
+        
+    </main>
+	
+      <script src="main/main.js" src="https://apis.google.com/js/platform.js" async defer
+              type="text/javascript"
+		async defer
+		src="http://assets.pinterest.com/js/pinit.js">
+           {lang: 'pl'}
+	</script>
+  </body>
+</html>

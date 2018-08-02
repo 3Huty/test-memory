@@ -1,132 +1,380 @@
-html {
-  font-family: sans-serif;
-}
-
-
-@media screen and (min-width: 768px) {
-    .cards ul {
-        order: 0;
-        width: 100%;
-        margin: 1px;
-      
-  }
-    
-    .container {
-        order: 1;
-        width: 100%;
-        float: left;
-        margin-top: 30px;;
-  }
-    
-    li {
-        border: solid 1px black;
-        width: 63px;
-        height: 88px;
-        display: inline-block;
-        padding: 5px;
-        margin: 1px;
-        text-decoration: none;   
-        flex:1 20px
+@media screen and (max-width: 600px) and (orientation: landscape) {
+    main {
+        max-width: 600px;
     }
     
-    #button p {
-        order: 2;
-        width: 100%;
-        float: left;
-        margin-top: 30px;
+    #cards {
+        margin-left: auto;
+        margin-right: auto;
     }
     
+    .game_container #gameTime {
+        float: left;
+    }
+    
+    .game_container #gameMoves {
+        float: right;
+    }
+}
+		
+@media screen and (min-width: 601px) and (orientation: landscape) {
+    main {
+        max-width: 900px;
+        font-family: Roboto;
+    }
+    
+    #cards {
+        float: left;
+        max-width: 500px;
+    }
+    
+    section.sec_cards > .container {
+        float: right;
+    }
+    
+    .game_container #gameTime {
+        float: left;
+    }
+    
+    .game_container #gameMoves {
+        float: right;
+    }
+}
+	
+@media screen and (max-width: 600px) and (orientation: portrait) {
+    main {
+        max-width: 600px;
+    }
+    
+    #cards {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 500px;
+    }
+    
+    .game_container #gameTime {
+        float: left;
+    }
+    
+    .game_container #gameMoves {
+        float: right;
+    }
+}
+		
+@media screen and (min-width: 601px) and (orientation: portrait) {
+    main {
+        max-width: 900px;
+        font-family: Roboto;
+    }
+    #cards {
+        margin-left: auto;
+		margin-right: auto;
+    }
+    
+    #cards.difficulty15 {
+        max-width: 500px;
+    }
+    
+    #cards.difficulty21 {
+        max-width: 600px;
+    }			
+    section.sec_cards > .container {
+        clear: both;
+    }
+    
+    .game_container #gameTime {
+        float: left;
+    }
+    
+    .game_container #gameMoves {
+        float: right;
+    }
 }
 
-@media screen and (min-width: 1024px) {
-    .cards ul {
-        float: left;
-        order: 0;
-        width: 65%;
-        margin: 1px;
-      
-  }
-    
-    .container {
-        order: 1;
-        width: 35%;
-        margin-top: none;
-        position: relative;
-  }
-    
-    li {
+main {
+    border: solid 1px green;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+    font-family: Roboto;
+	}
+		
+main > section {
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+	}
+		
+section.sec_welcome {
+    border: solid 2px pink;
+	padding: 5px;
+	max-width: 890px; 
+    text-align: center;
+    }
+		
+section.sec_name{
+    border: solid 2px blue;
+    padding: 5px;
+    max-width: 890px; 
+    text-align: center;
+    }
         
-        border: solid 1px black;
-        width: 63px;
-        height: 88px;
-        display: inline-block;
-        padding: 5px;
-        margin: 1px;
-        text-decoration: none;    
+section.sec_begin {
+    border: solid 2px purple;
+    padding: 5px;
+    max-width: 890px;
+    text-align: center;
     }
-    
-    #button p {
-        order: 2;
-        width: 45%;
-        text-align: center
-        margin-top: 50px;
+        
+section.sec_cards {
+    border: solid 2px red;
+	padding: 5px;
+	overflow: auto;
+	}
+
+section.sec_cards #cards > span {
+    display: inline-block;
+	border: solid 1px black;
+	padding: 7px;
+	margin: 0.5px;
+	width: 63px;
+	height: 88px;
+	background-image: url('images/icon.png');
+	background-repeat: no-repeat;
+	/* background-position oraz padding do zlikwidowania gdy będą gotowe wszystkie obrazki kart */
+	background-position: 7px 7px;
+	}
+		
+		
+section.sec_cards #cards > span > img {
+    opacity: 0;
+	}
+
+section.sec_cards #cards > span.awers > img {
+	opacity: 1.0;
+	}
+		
+/* awers znika i widać rewers */
+section.sec_cards #cards > span.rewers > img {
+    animation-name: hidecard;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	}
+		
+@keyframes hidecard {
+    from {
+        opacity: 1.0;
     }
-    
+			
+to {
+    opacity: 0;
+    }
 }
-
-
-
-#button p {
-width: 290px;
-   height: 40px;
-   box-sizing: border-box;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   text-align:center;
-   font-size: 1.2rem;
-   background-color: red;
-   color: white;
-   text-shadow: 1px 1px 1px black;
-   border-radius: 15px;
-   border: 1px solid;
-   border-color: rgb(204, 0, 0);
-    
-   background-image: black;
-   background-image: linear-gradient(to top left, grey, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.2) 30%);
-   box-shadow: 2px 2px 2px black,
-               inset 2px 2px 5px rgba(0,0,0,0.5),
-               inset -2px -2px 5px rgba(255,255,255,0.5);
-    
-    
-    
-}
-
+		
 .container {
-  margin-left: 0;
-  width: 210px;
-  /* To see the outline of the form */
-  padding: 1em;
-  border: 1px solid #CCC;
-  border-radius: 1em;
-}
+    width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+    margin-top: 2em;
+	/* To see the outline of the form */
+	padding: 2em;
+	border: 1px solid #CCC;
+	border-radius: 1em;
+	text-align: center;
+	}
+		
+section.sec_score {
+    border: solid 2px orange;
+	padding: 5px;
+	max-width: 890px; 
+    /*height: 370px;*/
+    text-align: center;
+    }
 
-section div + div {
-  margin-top: 0.5em
-}
+section.sec_exit {
+    border: solid 2px violet;
+	padding: 5px;
+	max-width: 890px;  
+    /*height: 370px;*/
+    text-align: center;
+    }
 
-label {
-  /* the same size of labels */
-  display: inline-block;
-  width: 95px;
-  text-align: left;
+.btn {
+	/*height: 40px;*/
+	box-sizing: border-box;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-size: 1.2rem;
+	background-color: red;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	border-radius: 15px;
+	border: 1px solid rgb(204, 0, 0);
+	background-color: red;
+	background-image: linear-gradient(to top left, grey, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0.2) 30%);
+	box-shadow: 2px 2px 2px black,
+	inset 2px 2px 5px rgba(0,0,0,0.5),
+	inset -2px -2px 5px rgba(255,255,255,0.5);
+	}
+        
+.btn_enter {
+    width: 290px;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    }
+        
+.btn_save {
+    width: 90px; 
+    height:50px;
+    margin-top: 3em;
+    }
+        
+.btn_level1, .btn_level2 {
+    width: 290px;
+    margin-top: 3em;
+    display: block;
+    margin: auto;
+    }
+        
+.btn_level1 {
+     margin-top: 3em;
+     margin-bottom: 0.8em;
 }
-
+        
+.btn_level2 {
+    margin-bottom: 3em;
+    }
+        
+.btn_newgame {
+    width: 290px;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    }
+		
+.btn_play, .btn_exit {
+    width: 290px;
+    display: block;
+    margin: auto;
+    }
+        
+.btn_play {
+    margin-bottom: 0.8em;
+    }
+        
+.btn_exit {
+    margin-bottom: 3em;
+    }
+        
+.game_container {
+	border: solid 1px white;
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	}
+		
 input {
-  font: 0.6em;
-  /* the same size of text fields */
-  width: 100px;
-  box-sizing: border-box;
-  /* the same look & feel of text field border */
-  border: 1px solid #999;
-}
+    width: 200px;
+    line-height: 30px;
+    margin-bottom: 3em;
+    }
+        
+.icons {
+    margin-bottom: 3em;
+    margin-top: 7em;
+    }
+        
+.game {
+	max-width: 5em;
+	border: solid 1px white;
+	margin-left: auto;
+	margin-right: auto;
+	}
+		
+.game .label {
+    font-size: 24px;
+    text-align: center;
+	}
+		
+.game .value {
+	font-size: 26px;
+	text-align: center;
+	font-weight: bold;
+	}
+		
+.score_container {
+    border: solid 1px white;
+	max-width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 4em;
+    overflow: auto;
+    }
 
+.score {
+    max-width: 20em;
+	padding-left: 1em;
+    padding-right: 1em;
+	border: solid 1px white;
+	margin-left: 4px;
+	margin-right: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+    }
+        
+.score .label {
+    font-size: 24px;
+	margin: auto;
+	text-align: center;
+    margin-bottom: 1em;
+    }
+.score .value {
+    font-size: 23px;
+    border: solid 1px white;
+	text-align: center;
+	font-weight: bold;
+    }
+        
+.score_container #scoreDate {
+    float: left;
+    }
+        
+.score_container #scoreMoves {
+    float:right;
+    }
+		
+main > section {
+    display: none;
+    }
+		
+main.sec_welcome > section.sec_welcome {
+	display: block;
+	}
+		
+main.sec_name > section.sec_name {
+    display: block;
+	}
+	
+main.sec_begin > section.sec_begin {
+	display: block;
+	}
+		
+main.sec_cards > section.sec_cards {
+     display: block;
+     }
+        
+main.sec_score > section.sec_score {
+     display: block;
+     }
+        
+main.sec_exit > section.sec_exit {
+     display: block;
+     }
+        
+#name.alert:empty {
+     border: solid 1px red;
+     }
+        
