@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
 	
 	<style type="text/css">
-		/* Telefon */
+		
 		@media screen and (max-width: 600px) and (orientation: landscape) {
 			main {
 				max-width: 600px;
@@ -36,7 +36,7 @@
 			}
 		}
 		
-		/* Tablet */
+		
 		@media screen and (min-width: 601px) and (orientation: landscape) {
 			main {
 				max-width: 900px;
@@ -61,7 +61,7 @@
 			}
 		}
 	
-		/* Telefon */
+		
 		@media screen and (max-width: 600px) and (orientation: portrait) {
 			main {
 				max-width: 600px;
@@ -82,7 +82,7 @@
 			}
 		}
 		
-		/* Tablet */
+		
 		@media screen and (min-width: 601px) and (orientation: portrait) {
 			main {
 				max-width: 900px;
@@ -406,29 +406,28 @@
         }
 		
 		
-		/* domyślnie wszystkie sekcje są niewidoczne */
-		/* zakomentuj poniższą regułę żeby zobaczyć wszystkie sekcje */
+		
 		main > section {
             display: none;
-          /* visibility: visible; */
+          
 		}
 		
-		/* ekran powitalny pojawi się tylko gdy na <main> ustawimy class="sec_welcome" */
+	
 		main.sec_welcome > section.sec_welcome {
 			display: block;
 		}
 		
-		/* ekran wybóru gracza pojawi się tylko gdy na <main> ustawimy class="sec_name" */
+	
 		main.sec_name > section.sec_name {
 			display: block;
 		}
 		
-		/* ekran wyboru trudności gry pojawi się gdy na <main> ustawimy class="sec_begin" */
+	
 		main.sec_begin > section.sec_begin {
 			display: block;
 		}
 		
-		/* a teraz musisz dodać reguły dla pozostałych sekcji :) */
+	
         
         main.sec_cards > section.sec_cards {
             display: block;
@@ -462,11 +461,11 @@
             
             
 			window.onload = function() {
-				// zacznij wykonywać kod JS dopiero gdy cała strona się wczyta razem ze wszyskimi grafikami oraz stylami i innymi JSami
+				
 				console.log("Wiem ze strona zaladowala sie");
 				console.log("Bardzo się cieszę");
 				
-				// tu zacznij dodawać kod javascriptowy
+				 
 				document.getElementById("btnEnter").onclick = enterGame;
 				document.getElementById("btnSaveName").onclick = saveName;
                 document.getElementById("btnLevel1").onclick = prepareGame;
@@ -633,7 +632,7 @@
 					// pierwsza karta już wybrana, więc to jest druga
 					card.className = "awers";
 
-					// czy to karty z tej samej pary sprawdziwy za 250 milisekund czyli 1/4 sekundy
+					
 					cardTimeout = window.setTimeout(areCardsTheSame, 250, card);		// zapamietajmy że czekamy na odpalenie funkcji sprawdzającej
                     
                     moves++;
