@@ -6,17 +6,18 @@ var moves;
 var cardsToMatch;
 var cardTimeout = undefined;
 var gameTimer = undefined;
+var animationsToPlay = 0;
             
             
 window.onload = function() {
-document.getElementById("btnEnter").onclick = enterGame;
-document.getElementById("btnSaveName").onclick = saveName;
-document.getElementById("btnLevel1").onclick = prepareGame;
-document.getElementById("btnLevel2").onclick = prepareGame;
-document.getElementById("btnNewGame").onclick = newGame;
-document.getElementById("cards").onclick = cardSelected;
-document.getElementById("btnPlayAgain").onclick = playAgain;
-document.getElementById("btnExit").onclick = exitMemory;
+	document.getElementById("btnEnter").onclick = enterGame;
+	document.getElementById("btnSaveName").onclick = saveName;
+	document.getElementById("btnLevel1").onclick = prepareGame;
+	document.getElementById("btnLevel2").onclick = prepareGame;
+	document.getElementById("btnNewGame").onclick = newGame;
+	document.getElementById("cards").onclick = cardSelected;
+	document.getElementById("btnPlayAgain").onclick = playAgain;
+	document.getElementById("btnExit").onclick = exitMemory;
 }
             
 function enterGame() {
@@ -34,7 +35,10 @@ function saveName() {
 
     var span = document.getElementById("new_name");
     span.textContent = input.value;
-    main.className = "sec_begin";  
+    main.className = "sec_begin";
+	
+	span = document.getElementById("score_name");
+	span.textContent = input.value;
 }
             
             
@@ -151,6 +155,11 @@ function cardSelected(event) {
     if ((firstCard == card) || (cardTimeout != undefined)) {
         return;
     }
+	
+	if (animationsToPlay > 0) {
+		// animacja nadal trwa
+		return;
+	}
     
     if (firstCard == undefined) {
         firstCard = card;
@@ -178,6 +187,9 @@ function areCardsTheSame(secondCard) {
         cardsToMatch--;
     } else {
         var img = firstCard.children[0];
+		
+		animationsToPlay = 2;
+		
         img.addEventListener("animationend", hideCardsAnimationListener, false);
         
         img = secondCard.children[0];
@@ -218,32 +230,6 @@ function areCardsTheSame(secondCard) {
 
 function hideCardsAnimationListener(event) {
     event.target.parentNode.className = "";
+	animationsToPlay--;
 }
-			
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v3.1';
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-		
-
-window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    
-    t._e = [];
-    t.ready = function(f) {
-        t._e.push(f);
-    };
-    
-    return t;
-}(document, "script", "twitter-wjs"));
 
