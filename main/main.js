@@ -253,4 +253,8 @@ window.twttr = (function(d, s, id) {
 
 		  t._e = [];
 		  t.ready = function(f) {
-	
+		t._e.push(f);
+		  };
+
+		  return t;
+		}(document, "script", "twitter-wjs"));
