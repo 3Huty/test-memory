@@ -36,9 +36,9 @@ function saveName() {
     var span = document.getElementById("new_name");
     span.textContent = input.value;
     main.className = "sec_begin";
-    
-    span = document.getElementById("score_name");
-    span.textContent = input.value;
+	
+	span = document.getElementById("score_name");
+	span.textContent = input.value;
 }
             
             
