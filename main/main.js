@@ -171,7 +171,7 @@ function cardSelected(event) {
     }
 }
 
-function areCardsTheSame(secondCard) {
+function checkIfCardsAreTheSame(secondCard) {
     window.clearTimeout(cardTimeout);
     cardTimeout = undefined;
     
