@@ -6,17 +6,18 @@ var moves;
 var cardsToMatch;
 var cardTimeout = undefined;
 var gameTimer = undefined;
+var animationsToPlay = 0;
             
             
 window.onload = function() {
-document.getElementById("btnEnter").onclick = enterGame;
-document.getElementById("btnSaveName").onclick = saveName;
-document.getElementById("btnLevel1").onclick = prepareGame;
-document.getElementById("btnLevel2").onclick = prepareGame;
-document.getElementById("btnNewGame").onclick = newGame;
-document.getElementById("cards").onclick = cardSelected;
-document.getElementById("btnPlayAgain").onclick = playAgain;
-document.getElementById("btnExit").onclick = exitMemory;
+	document.getElementById("btnEnter").onclick = enterGame;
+	document.getElementById("btnSaveName").onclick = saveName;
+	document.getElementById("btnLevel1").onclick = prepareGame;
+	document.getElementById("btnLevel2").onclick = prepareGame;
+	document.getElementById("btnNewGame").onclick = newGame;
+	document.getElementById("cards").onclick = cardSelected;
+	document.getElementById("btnPlayAgain").onclick = playAgain;
+	document.getElementById("btnExit").onclick = exitMemory;
 }
             
 function enterGame() {
@@ -27,17 +28,17 @@ function enterGame() {
 function saveName() {
     var input = document.querySelector("#name");
     if (input.value.length == 0) {
-    var alert = document.getElementById("name");
-    alert.className = "alert"; 
-    return;
+        var alert = document.getElementById("name");
+        alert.className = "alert"; 
+        return;
     }
-
+    
     var span = document.getElementById("new_name");
     span.textContent = input.value;
     main.className = "sec_begin";
-    
-    span = document.getElementById("score_name");
-    span.textContent = input.value;
+	
+	span = document.getElementById("score_name");
+	span.textContent = input.value;
 }
             
             
@@ -154,6 +155,11 @@ function cardSelected(event) {
     if ((firstCard == card) || (cardTimeout != undefined)) {
         return;
     }
+	
+	if (animationsToPlay > 0) {
+		// animacja nadal trwa
+		return;
+	}
     
     if (firstCard == undefined) {
         firstCard = card;
@@ -165,7 +171,7 @@ function cardSelected(event) {
     } else {
         // pierwsza karta już została wybrana, więc to jest druga
         card.className = "awers";
-        cardTimeout = window.setTimeout(areCardsTheSame, 250, card);
+        cardTimeout = window.setTimeout(checkIfCardsAreTheSame, 250, card);
         moves++;
         showScore();
     }
@@ -181,6 +187,9 @@ function checkIfCardsAreTheSame(secondCard) {
         cardsToMatch--;
     } else {
         var img = firstCard.children[0];
+		
+		animationsToPlay = 2;
+		
         img.addEventListener("animationend", hideCardsAnimationListener, false);
         
         img = secondCard.children[0];
@@ -221,32 +230,31 @@ function checkIfCardsAreTheSame(secondCard) {
 
 function hideCardsAnimationListener(event) {
     event.target.parentNode.className = "";
+	animationsToPlay--;
 }
-			
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v3.1';
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
 
-		
+function shareFacebook() {
+    window.open(
+        "https://www.facebook.com/dialog/share?app_id=1501108020021900&href=http%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fgithub.com%2F3Huty%2Ftest-memory%2Fblob%2Fmaster%2Findex.html&display=popup&redirect_uri=http%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fgithub.com%2F3Huty%2Ftest-memory%2Fblob%2Fmaster%2Fcloseshare.html",
+		"shareFb",
+		"width=400,height=200"
+	);
+}
 
-window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    
-    t._e = [];
-    t.ready = function(f) {
-        t._e.push(f);
-    };
-    
-    return t;
-}(document, "script", "twitter-wjs"));
+function shareTwitter() {
+	window.open(
+		"https://twitter.com/intent/tweet?url=http%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fgithub.com%2F3Huty%2Ftest-memory%2Fblob%2Fmaster%2Findex.html&text=Check%20out%20this%20awsome%20Memory%20Game%21",
+		"shareTwitter",
+		"width=400,height=200"
+	);
+}
+
+function sharePinterest() {
+	window.open(
+		"http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fhtmlpreview.github.io%2F%3Fhttps%3A%2F%2Fgithub.com%2F3Huty%2Ftest-memory%2Fblob%2Fmaster%2Findex.html&description=Check%20out%20this%20awsome%20Memory%20Game%21",
+		"sharePinterest",
+		"width=400,height=200"
+	);	
+}
+
 
