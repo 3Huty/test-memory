@@ -194,9 +194,9 @@ input {
     }
 
 .icons > button {
-	padding: 0px;
-	border-width: 0px;
-	cursor: pointer;
+    padding: 0px;
+    border-width: 0px;
+    cursor: pointer;
 }
 
 .game {

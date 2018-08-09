@@ -36,9 +36,9 @@ function saveName() {
     var span = document.getElementById("new_name");
     span.textContent = input.value;
     main.className = "sec_begin";
-	
-	span = document.getElementById("score_name");
-	span.textContent = input.value;
+    
+    span = document.getElementById("score_name");
+    span.textContent = input.value;
 }
             
             
@@ -157,8 +157,8 @@ function cardSelected(event) {
     }
 	
 	if (animationsToPlay > 0) {
-		// animacja nadal trwa
-		return;
+        // animacja nadal trwa
+        return;
 	}
     
     if (firstCard == undefined) {
@@ -187,8 +187,8 @@ function checkIfCardsAreTheSame(secondCard) {
         cardsToMatch--;
     } else {
         var img = firstCard.children[0];
-		
-		animationsToPlay = 2;
+        
+        animationsToPlay = 2;
 		
         img.addEventListener("animationend", hideCardsAnimationListener, false);
         
@@ -230,7 +230,7 @@ function checkIfCardsAreTheSame(secondCard) {
 
 function hideCardsAnimationListener(event) {
     event.target.parentNode.className = "";
-	animationsToPlay--;
+    animationsToPlay--;
 }
 
 function shareFacebook() {
