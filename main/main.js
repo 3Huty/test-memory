@@ -92,7 +92,7 @@ function prepareGame(event) {
         
         span.appendChild(newCard);			// wkładam obrazek do karty żeby zakryć rewers
         cardsList.appendChild(span);		// kładę kartę na stole
-		}
+    }
     
     // w tym momencie time = 0 i moves = 0
     showScore();
